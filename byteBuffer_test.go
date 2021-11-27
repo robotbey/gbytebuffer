@@ -150,7 +150,7 @@ func TestByteBuffer_GetByte(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			b := ByteBufferFrom([]byte{tt.want})
-			is := b.GetByte()
+			is := b.ReadByte()
 			if is != tt.want {
 				t.Errorf("ByteBuffer.BetByte() = %v, want %v", is, tt.want)
 			}
@@ -172,7 +172,7 @@ func TestByteBuffer_SetByte(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			b := NewByteBuffer()
-			b.SetByte(tt.want)
+			b.WriteByte(tt.want)
 			if b.Buffer()[0] != tt.want {
 				t.Errorf("ByteBuffer.SetByte() = %v, want %v", b.Buffer()[0], tt.want)
 			}
@@ -180,7 +180,7 @@ func TestByteBuffer_SetByte(t *testing.T) {
 	}
 }
 
-func TestByteBuffer_GetInt8(t *testing.T) {
+func TestByteBuffer_ReadInt8(t *testing.T) {
 	tests := []struct {
 		name string
 		b    *ByteBuffer
@@ -190,14 +190,14 @@ func TestByteBuffer_GetInt8(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetInt8(); got != tt.want {
-				t.Errorf("ByteBuffer.GetInt8() = %v, want %v", got, tt.want)
+			if got := tt.b.ReadInt8(); got != tt.want {
+				t.Errorf("ByteBuffer.ReadInt8() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestByteBuffer_SetInt8(t *testing.T) {
+func TestByteBuffer_WriteInt8(t *testing.T) {
 	type args struct {
 		val int8
 	}
@@ -210,12 +210,12 @@ func TestByteBuffer_SetInt8(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.b.SetInt8(tt.args.val)
+			tt.b.WriteInt8(tt.args.val)
 		})
 	}
 }
 
-func TestByteBuffer_GetUInt8(t *testing.T) {
+func TestByteBuffer_ReadUInt8(t *testing.T) {
 	tests := []struct {
 		name string
 		b    *ByteBuffer
@@ -225,14 +225,14 @@ func TestByteBuffer_GetUInt8(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetUInt8(); got != tt.want {
-				t.Errorf("ByteBuffer.GetUInt8() = %v, want %v", got, tt.want)
+			if got := tt.b.ReadUInt8(); got != tt.want {
+				t.Errorf("ByteBuffer.ReadUInt8() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestByteBuffer_SetUInt8(t *testing.T) {
+func TestByteBuffer_WriteUInt8(t *testing.T) {
 	type args struct {
 		val uint8
 	}
@@ -245,12 +245,12 @@ func TestByteBuffer_SetUInt8(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.b.SetUInt8(tt.args.val)
+			tt.b.WriteUInt8(tt.args.val)
 		})
 	}
 }
 
-func TestByteBuffer_GetInt16(t *testing.T) {
+func TestByteBuffer_ReadInt16(t *testing.T) {
 	tests := []struct {
 		name string
 		b    *ByteBuffer
@@ -260,14 +260,14 @@ func TestByteBuffer_GetInt16(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetInt16(); got != tt.want {
-				t.Errorf("ByteBuffer.GetInt16() = %v, want %v", got, tt.want)
+			if got := tt.b.ReadInt16(); got != tt.want {
+				t.Errorf("ByteBuffer.ReadInt16() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestByteBuffer_SetInt16(t *testing.T) {
+func TestByteBuffer_WriteInt16(t *testing.T) {
 	type args struct {
 		val int16
 	}
@@ -280,12 +280,12 @@ func TestByteBuffer_SetInt16(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.b.SetInt16(tt.args.val)
+			tt.b.WriteInt16(tt.args.val)
 		})
 	}
 }
 
-func TestByteBuffer_GetInt16BE(t *testing.T) {
+func TestByteBuffer_ReadInt16BE(t *testing.T) {
 	tests := []struct {
 		name string
 		b    *ByteBuffer
@@ -295,14 +295,14 @@ func TestByteBuffer_GetInt16BE(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetInt16BE(); got != tt.want {
-				t.Errorf("ByteBuffer.GetInt16BE() = %v, want %v", got, tt.want)
+			if got := tt.b.ReadInt16BE(); got != tt.want {
+				t.Errorf("ByteBuffer.ReadInt16BE() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestByteBuffer_SetInt16BE(t *testing.T) {
+func TestByteBuffer_WriteInt16BE(t *testing.T) {
 	type args struct {
 		val int16
 	}
@@ -315,12 +315,12 @@ func TestByteBuffer_SetInt16BE(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.b.SetInt16BE(tt.args.val)
+			tt.b.WriteInt16BE(tt.args.val)
 		})
 	}
 }
 
-func TestByteBuffer_GetUInt16(t *testing.T) {
+func TestByteBuffer_ReadUInt16(t *testing.T) {
 	tests := []struct {
 		name string
 		b    *ByteBuffer
@@ -330,14 +330,14 @@ func TestByteBuffer_GetUInt16(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetUInt16(); got != tt.want {
-				t.Errorf("ByteBuffer.GetUInt16() = %v, want %v", got, tt.want)
+			if got := tt.b.ReadUInt16(); got != tt.want {
+				t.Errorf("ByteBuffer.ReadUInt16() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestByteBuffer_SetUInt16(t *testing.T) {
+func TestByteBuffer_WriteUInt16(t *testing.T) {
 	type args struct {
 		val uint16
 	}
@@ -350,12 +350,12 @@ func TestByteBuffer_SetUInt16(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.b.SetUInt16(tt.args.val)
+			tt.b.WriteUInt16(tt.args.val)
 		})
 	}
 }
 
-func TestByteBuffer_GetUInt16BE(t *testing.T) {
+func TestByteBuffer_ReadUInt16BE(t *testing.T) {
 	tests := []struct {
 		name string
 		b    *ByteBuffer
@@ -365,14 +365,14 @@ func TestByteBuffer_GetUInt16BE(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetUInt16BE(); got != tt.want {
-				t.Errorf("ByteBuffer.GetUInt16BE() = %v, want %v", got, tt.want)
+			if got := tt.b.ReadUInt16BE(); got != tt.want {
+				t.Errorf("ByteBuffer.ReadUInt16BE() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestByteBuffer_SetUInt16BE(t *testing.T) {
+func TestByteBuffer_WriteUInt16BE(t *testing.T) {
 	type args struct {
 		val uint16
 	}
@@ -385,12 +385,12 @@ func TestByteBuffer_SetUInt16BE(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.b.SetUInt16BE(tt.args.val)
+			tt.b.WriteUInt16BE(tt.args.val)
 		})
 	}
 }
 
-func TestByteBuffer_GetUInt32(t *testing.T) {
+func TestByteBuffer_ReadUInt32(t *testing.T) {
 	tests := []struct {
 		name string
 		b    *ByteBuffer
@@ -400,14 +400,14 @@ func TestByteBuffer_GetUInt32(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetUInt32(); got != tt.want {
-				t.Errorf("ByteBuffer.GetUInt32() = %v, want %v", got, tt.want)
+			if got := tt.b.ReadUInt32(); got != tt.want {
+				t.Errorf("ByteBuffer.ReadUInt32() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestByteBuffer_SetUInt32(t *testing.T) {
+func TestByteBuffer_WriteUInt32(t *testing.T) {
 	type args struct {
 		val uint32
 	}
@@ -420,12 +420,12 @@ func TestByteBuffer_SetUInt32(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.b.SetUInt32(tt.args.val)
+			tt.b.WriteUInt32(tt.args.val)
 		})
 	}
 }
 
-func TestByteBuffer_GetUInt32BE(t *testing.T) {
+func TestByteBuffer_ReadUInt32BE(t *testing.T) {
 	tests := []struct {
 		name string
 		b    *ByteBuffer
@@ -435,14 +435,14 @@ func TestByteBuffer_GetUInt32BE(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetUInt32BE(); got != tt.want {
-				t.Errorf("ByteBuffer.GetUInt32BE() = %v, want %v", got, tt.want)
+			if got := tt.b.ReadUInt32BE(); got != tt.want {
+				t.Errorf("ByteBuffer.ReadUInt32BE() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestByteBuffer_SetUInt32BE(t *testing.T) {
+func TestByteBuffer_WriteUInt32BE(t *testing.T) {
 	type args struct {
 		val uint32
 	}
@@ -455,12 +455,12 @@ func TestByteBuffer_SetUInt32BE(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.b.SetUInt32BE(tt.args.val)
+			tt.b.WriteUInt32BE(tt.args.val)
 		})
 	}
 }
 
-func TestByteBuffer_GetInt32(t *testing.T) {
+func TestByteBuffer_ReadInt32(t *testing.T) {
 	tests := []struct {
 		name string
 		b    *ByteBuffer
@@ -470,14 +470,14 @@ func TestByteBuffer_GetInt32(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetInt32(); got != tt.want {
-				t.Errorf("ByteBuffer.GetInt32() = %v, want %v", got, tt.want)
+			if got := tt.b.ReadInt32(); got != tt.want {
+				t.Errorf("ByteBuffer.ReadInt32() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestByteBuffer_SetInt32(t *testing.T) {
+func TestByteBuffer_WriteInt32(t *testing.T) {
 	type args struct {
 		val int32
 	}
@@ -490,12 +490,12 @@ func TestByteBuffer_SetInt32(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.b.SetInt32(tt.args.val)
+			tt.b.WriteInt32(tt.args.val)
 		})
 	}
 }
 
-func TestByteBuffer_GetInt32BE(t *testing.T) {
+func TestByteBuffer_ReadInt32BE(t *testing.T) {
 	tests := []struct {
 		name string
 		b    *ByteBuffer
@@ -505,14 +505,14 @@ func TestByteBuffer_GetInt32BE(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetInt32BE(); got != tt.want {
-				t.Errorf("ByteBuffer.GetInt32BE() = %v, want %v", got, tt.want)
+			if got := tt.b.ReadInt32BE(); got != tt.want {
+				t.Errorf("ByteBuffer.ReadInt32BE() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestByteBuffer_SetInt32BE(t *testing.T) {
+func TestByteBuffer_WriteInt32BE(t *testing.T) {
 	type args struct {
 		val int32
 	}
@@ -525,12 +525,12 @@ func TestByteBuffer_SetInt32BE(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.b.SetInt32BE(tt.args.val)
+			tt.b.WriteInt32BE(tt.args.val)
 		})
 	}
 }
 
-func TestByteBuffer_GetUInt64(t *testing.T) {
+func TestByteBuffer_ReadUInt64(t *testing.T) {
 	tests := []struct {
 		name string
 		b    *ByteBuffer
@@ -540,14 +540,14 @@ func TestByteBuffer_GetUInt64(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetUInt64(); got != tt.want {
-				t.Errorf("ByteBuffer.GetUInt64() = %v, want %v", got, tt.want)
+			if got := tt.b.ReadUInt64(); got != tt.want {
+				t.Errorf("ByteBuffer.ReadUInt64() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestByteBuffer_SetUInt64(t *testing.T) {
+func TestByteBuffer_WriteUInt64(t *testing.T) {
 	type args struct {
 		val uint64
 	}
@@ -560,12 +560,12 @@ func TestByteBuffer_SetUInt64(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.b.SetUInt64(tt.args.val)
+			tt.b.WriteUInt64(tt.args.val)
 		})
 	}
 }
 
-func TestByteBuffer_GetUInt64BE(t *testing.T) {
+func TestByteBuffer_ReadUInt64BE(t *testing.T) {
 	tests := []struct {
 		name string
 		b    *ByteBuffer
@@ -575,14 +575,14 @@ func TestByteBuffer_GetUInt64BE(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetUInt64BE(); got != tt.want {
-				t.Errorf("ByteBuffer.GetUInt64BE() = %v, want %v", got, tt.want)
+			if got := tt.b.ReadUInt64BE(); got != tt.want {
+				t.Errorf("ByteBuffer.ReadUInt64BE() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestByteBuffer_SetUInt64BE(t *testing.T) {
+func TestByteBuffer_WriteUInt64BE(t *testing.T) {
 	type args struct {
 		val uint64
 	}
@@ -595,12 +595,12 @@ func TestByteBuffer_SetUInt64BE(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.b.SetUInt64BE(tt.args.val)
+			tt.b.WriteUInt64BE(tt.args.val)
 		})
 	}
 }
 
-func TestByteBuffer_GetInt64(t *testing.T) {
+func TestByteBuffer_ReadInt64(t *testing.T) {
 	tests := []struct {
 		name string
 		b    *ByteBuffer
@@ -610,14 +610,14 @@ func TestByteBuffer_GetInt64(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetInt64(); got != tt.want {
-				t.Errorf("ByteBuffer.GetInt64() = %v, want %v", got, tt.want)
+			if got := tt.b.ReadInt64(); got != tt.want {
+				t.Errorf("ByteBuffer.ReadInt64() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestByteBuffer_SetInt64(t *testing.T) {
+func TestByteBuffer_WriteInt64(t *testing.T) {
 	type args struct {
 		val int64
 	}
@@ -630,12 +630,12 @@ func TestByteBuffer_SetInt64(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.b.SetInt64(tt.args.val)
+			tt.b.WriteInt64(tt.args.val)
 		})
 	}
 }
 
-func TestByteBuffer_GetInt64BE(t *testing.T) {
+func TestByteBuffer_ReadInt64BE(t *testing.T) {
 	tests := []struct {
 		name string
 		b    *ByteBuffer
@@ -645,14 +645,14 @@ func TestByteBuffer_GetInt64BE(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetInt64BE(); got != tt.want {
-				t.Errorf("ByteBuffer.GetInt64BE() = %v, want %v", got, tt.want)
+			if got := tt.b.ReadInt64BE(); got != tt.want {
+				t.Errorf("ByteBuffer.ReadInt64BE() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestByteBuffer_SetInt64BE(t *testing.T) {
+func TestByteBuffer_WriteInt64BE(t *testing.T) {
 	type args struct {
 		val int64
 	}
@@ -665,12 +665,12 @@ func TestByteBuffer_SetInt64BE(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.b.SetInt64BE(tt.args.val)
+			tt.b.WriteInt64BE(tt.args.val)
 		})
 	}
 }
 
-func TestByteBuffer_GetFloat64(t *testing.T) {
+func TestByteBuffer_ReadFloat64(t *testing.T) {
 	tests := []struct {
 		name string
 		b    *ByteBuffer
@@ -680,14 +680,14 @@ func TestByteBuffer_GetFloat64(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetFloat64(); got != tt.want {
-				t.Errorf("ByteBuffer.GetFloat64() = %v, want %v", got, tt.want)
+			if got := tt.b.ReadFloat64(); got != tt.want {
+				t.Errorf("ByteBuffer.ReadFloat64() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestByteBuffer_SetFloat64(t *testing.T) {
+func TestByteBuffer_WriteFloat64(t *testing.T) {
 	type args struct {
 		val float64
 	}
@@ -700,12 +700,12 @@ func TestByteBuffer_SetFloat64(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.b.SetFloat64(tt.args.val)
+			tt.b.WriteFloat64(tt.args.val)
 		})
 	}
 }
 
-func TestByteBuffer_GetFloat64BE(t *testing.T) {
+func TestByteBuffer_ReadFloat64BE(t *testing.T) {
 	tests := []struct {
 		name string
 		b    *ByteBuffer
@@ -715,14 +715,14 @@ func TestByteBuffer_GetFloat64BE(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetFloat64BE(); got != tt.want {
-				t.Errorf("ByteBuffer.GetFloat64BE() = %v, want %v", got, tt.want)
+			if got := tt.b.ReadFloat64BE(); got != tt.want {
+				t.Errorf("ByteBuffer.ReadFloat64BE() = %v, want %v", got, tt.want)
 			}
 		})
 	}
 }
 
-func TestByteBuffer_SetFloat64BE(t *testing.T) {
+func TestByteBuffer_WriteFloat64BE(t *testing.T) {
 	type args struct {
 		val float64
 	}
@@ -735,7 +735,7 @@ func TestByteBuffer_SetFloat64BE(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			tt.b.SetFloat64BE(tt.args.val)
+			tt.b.WriteFloat64BE(tt.args.val)
 		})
 	}
 }
@@ -754,7 +754,7 @@ func TestByteBuffer_GetBytes(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := tt.b.GetBytes(tt.args.size); !reflect.DeepEqual(got, tt.want) {
+			if got := tt.b.ReadBytes(tt.args.size); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("ByteBuffer.GetBytes() = %v, want %v", got, tt.want)
 			}
 		})

@@ -23,15 +23,15 @@ A byte buffer library to read/write simple variable types from/into byte slices.
         // Write simple variable into byte slice
         buffer1 := NewByteBuffer()
         i8var := int8(42)
-        buffer.SetInt8(i8var)
+        buffer.WriteInt8(i8var)
         fmt.Println(buffer.Buffer())
         // output: [42]
 
         // Read from buffer into a variable
         buffer2 := ByteBufferFrom([]byte{0x69, 0xAB, 0xCD, 0xDE, 0xAD, 0xC0, 0xDE})   // 0xDEADC0DE = 3735929054
-        i8var := buffer2.GetInt8()
-        i16var := uffer2.GetInt16()
-        i32var := uffer2.GetInt32()
+        i8var := buffer2.ReadInt8()
+        i16var := uffer2.ReadInt16()
+        i32var := uffer2.ReadInt32()
 
         fmt.Println(i8var)
         fmt.Println(i16var)

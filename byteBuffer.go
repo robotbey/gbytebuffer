@@ -5,6 +5,9 @@ import (
 	"encoding/binary"
 )
 
+// VERSION is the version of the package.
+const VERSION = "0.2.0"
+
 // ByteBuffer is used to read and write data to a byte array.
 type ByteBuffer struct {
 	data   []byte
@@ -68,56 +71,56 @@ func (b *ByteBuffer) UpdateLength() {
 }
 
 // GetByte returns the byte at the current index.
-func (b *ByteBuffer) GetByte() byte {
+func (b *ByteBuffer) ReadByte() byte {
 	defer b.Advance(1)
 	return b.data[b.index]
 }
 
 // SetByte sets the byte at the current index.
-func (b *ByteBuffer) SetByte(val byte) {
+func (b *ByteBuffer) WriteByte(val byte) {
 	defer b.Advance(1)
 	b.data = append(b.data, val)
 	b.UpdateLength()
 }
 
-// GetInt8 returns the int8 at the current index.
-func (b *ByteBuffer) GetInt8() int8 {
-	return int8(b.GetByte())
+// ReadInt8 returns the int8 at the current index.
+func (b *ByteBuffer) ReadInt8() int8 {
+	return int8(b.ReadByte())
 }
 
-// SetInt8 sets the int8 at the current index.
-func (b *ByteBuffer) SetInt8(val int8) {
-	b.SetByte(byte(val))
+// WriteInt8 sets the int8 at the current index.
+func (b *ByteBuffer) WriteInt8(val int8) {
+	b.WriteByte(byte(val))
 }
 
-// GetUInt8 returns the uint8 at the current index.
-func (b *ByteBuffer) GetUInt8() uint8 {
-	return uint8(b.GetByte())
+// ReadUInt8 returns the uint8 at the current index.
+func (b *ByteBuffer) ReadUInt8() uint8 {
+	return uint8(b.ReadByte())
 }
 
-// SetUInt8 sets the uint8 at the current index.
-func (b *ByteBuffer) SetUInt8(val uint8) {
-	b.SetByte(byte(val))
+// WriteUInt8 sets the uint8 at the current index.
+func (b *ByteBuffer) WriteUInt8(val uint8) {
+	b.WriteByte(byte(val))
 }
 
-// GetInt16 returns the int16 at the current index.
-func (b *ByteBuffer) GetInt16() int16 {
-	return int16(b.GetUInt16())
+// ReadInt16 returns the int16 at the current index.
+func (b *ByteBuffer) ReadInt16() int16 {
+	return int16(b.ReadUInt16())
 }
 
-func (b *ByteBuffer) SetInt16(val int16) {
-	b.SetInt16(int16(val))
+func (b *ByteBuffer) WriteInt16(val int16) {
+	b.WriteInt16(int16(val))
 }
 
-func (b *ByteBuffer) GetInt16BE() int16 {
-	return int16(b.GetUInt16BE())
+func (b *ByteBuffer) ReadInt16BE() int16 {
+	return int16(b.ReadUInt16BE())
 }
 
-func (b *ByteBuffer) SetInt16BE(val int16) {
-	b.SetInt16BE(int16(val))
+func (b *ByteBuffer) WriteInt16BE(val int16) {
+	b.WriteInt16BE(int16(val))
 }
 
-func (b *ByteBuffer) GetUInt16() uint16 {
+func (b *ByteBuffer) ReadUInt16() uint16 {
 	defer b.Advance(2)
 	var c uint16
 	buf := bytes.NewReader(b.Data())
@@ -125,7 +128,7 @@ func (b *ByteBuffer) GetUInt16() uint16 {
 	return c
 }
 
-func (b *ByteBuffer) SetUInt16(val uint16) {
+func (b *ByteBuffer) WriteUInt16(val uint16) {
 	defer b.Advance(2)
 	var buffer bytes.Buffer
 	binary.Write(&buffer, binary.LittleEndian, &val)
@@ -133,7 +136,7 @@ func (b *ByteBuffer) SetUInt16(val uint16) {
 	b.UpdateLength()
 }
 
-func (b *ByteBuffer) GetUInt16BE() uint16 {
+func (b *ByteBuffer) ReadUInt16BE() uint16 {
 	defer b.Advance(2)
 	var c uint16
 	buf := bytes.NewReader(b.Data())
@@ -141,7 +144,7 @@ func (b *ByteBuffer) GetUInt16BE() uint16 {
 	return c
 }
 
-func (b *ByteBuffer) SetUInt16BE(val uint16) {
+func (b *ByteBuffer) WriteUInt16BE(val uint16) {
 	defer b.Advance(2)
 	var buffer bytes.Buffer
 	binary.Write(&buffer, binary.BigEndian, &val)
@@ -149,7 +152,7 @@ func (b *ByteBuffer) SetUInt16BE(val uint16) {
 	b.UpdateLength()
 }
 
-func (b *ByteBuffer) GetUInt32() uint32 {
+func (b *ByteBuffer) ReadUInt32() uint32 {
 	defer b.Advance(4)
 	var c uint32
 	buf := bytes.NewReader(b.Data())
@@ -157,7 +160,7 @@ func (b *ByteBuffer) GetUInt32() uint32 {
 	return c
 }
 
-func (b *ByteBuffer) SetUInt32(val uint32) {
+func (b *ByteBuffer) WriteUInt32(val uint32) {
 	defer b.Advance(4)
 	var buffer bytes.Buffer
 	binary.Write(&buffer, binary.LittleEndian, &val)
@@ -165,7 +168,7 @@ func (b *ByteBuffer) SetUInt32(val uint32) {
 	b.UpdateLength()
 }
 
-func (b *ByteBuffer) GetUInt32BE() uint32 {
+func (b *ByteBuffer) ReadUInt32BE() uint32 {
 	defer b.Advance(4)
 	var c uint32
 	buf := bytes.NewReader(b.Data())
@@ -173,7 +176,7 @@ func (b *ByteBuffer) GetUInt32BE() uint32 {
 	return c
 }
 
-func (b *ByteBuffer) SetUInt32BE(val uint32) {
+func (b *ByteBuffer) WriteUInt32BE(val uint32) {
 	defer b.Advance(4)
 	var buffer bytes.Buffer
 	binary.Write(&buffer, binary.BigEndian, &val)
@@ -181,23 +184,23 @@ func (b *ByteBuffer) SetUInt32BE(val uint32) {
 	b.UpdateLength()
 }
 
-func (b *ByteBuffer) GetInt32() int32 {
-	return int32(b.GetUInt32())
+func (b *ByteBuffer) ReadInt32() int32 {
+	return int32(b.ReadUInt32())
 }
 
-func (b *ByteBuffer) SetInt32(val int32) {
-	b.SetUInt32(uint32(val))
+func (b *ByteBuffer) WriteInt32(val int32) {
+	b.WriteUInt32(uint32(val))
 }
 
-func (b *ByteBuffer) GetInt32BE() int32 {
-	return int32(b.GetUInt32BE())
+func (b *ByteBuffer) ReadInt32BE() int32 {
+	return int32(b.ReadUInt32BE())
 }
 
-func (b *ByteBuffer) SetInt32BE(val int32) {
-	b.SetUInt32BE(uint32(val))
+func (b *ByteBuffer) WriteInt32BE(val int32) {
+	b.WriteUInt32BE(uint32(val))
 }
 
-func (b *ByteBuffer) GetUInt64() uint64 {
+func (b *ByteBuffer) ReadUInt64() uint64 {
 	defer b.Advance(8)
 	var c uint64
 	buf := bytes.NewReader(b.Data())
@@ -205,7 +208,7 @@ func (b *ByteBuffer) GetUInt64() uint64 {
 	return c
 }
 
-func (b *ByteBuffer) SetUInt64(val uint64) {
+func (b *ByteBuffer) WriteUInt64(val uint64) {
 	defer b.Advance(8)
 	var buffer bytes.Buffer
 	binary.Write(&buffer, binary.LittleEndian, &val)
@@ -213,7 +216,7 @@ func (b *ByteBuffer) SetUInt64(val uint64) {
 	b.UpdateLength()
 }
 
-func (b *ByteBuffer) GetUInt64BE() uint64 {
+func (b *ByteBuffer) ReadUInt64BE() uint64 {
 	defer b.Advance(8)
 	var c uint64
 	buf := bytes.NewReader(b.Data())
@@ -221,7 +224,7 @@ func (b *ByteBuffer) GetUInt64BE() uint64 {
 	return c
 }
 
-func (b *ByteBuffer) SetUInt64BE(val uint64) {
+func (b *ByteBuffer) WriteUInt64BE(val uint64) {
 	defer b.Advance(8)
 	var buffer bytes.Buffer
 	binary.Write(&buffer, binary.BigEndian, &val)
@@ -229,23 +232,23 @@ func (b *ByteBuffer) SetUInt64BE(val uint64) {
 	b.UpdateLength()
 }
 
-func (b *ByteBuffer) GetInt64() int64 {
-	return int64(b.GetUInt64())
+func (b *ByteBuffer) ReadInt64() int64 {
+	return int64(b.ReadUInt64())
 }
 
-func (b *ByteBuffer) SetInt64(val int64) {
-	b.SetUInt64(uint64(val))
+func (b *ByteBuffer) WriteInt64(val int64) {
+	b.WriteUInt64(uint64(val))
 }
 
-func (b *ByteBuffer) GetInt64BE() int64 {
-	return int64(b.GetUInt64BE())
+func (b *ByteBuffer) ReadInt64BE() int64 {
+	return int64(b.ReadUInt64BE())
 }
 
-func (b *ByteBuffer) SetInt64BE(val int64) {
-	b.SetUInt64BE(uint64(val))
+func (b *ByteBuffer) WriteInt64BE(val int64) {
+	b.WriteUInt64BE(uint64(val))
 }
 
-func (b *ByteBuffer) GetFloat64() float64 {
+func (b *ByteBuffer) ReadFloat64() float64 {
 	defer b.Advance(8)
 	var c float64
 	buf := bytes.NewReader(b.Data())
@@ -253,7 +256,7 @@ func (b *ByteBuffer) GetFloat64() float64 {
 	return c
 }
 
-func (b *ByteBuffer) SetFloat64(val float64) {
+func (b *ByteBuffer) WriteFloat64(val float64) {
 	defer b.Advance(8)
 	var buffer bytes.Buffer
 	binary.Write(&buffer, binary.LittleEndian, &val)
@@ -261,7 +264,7 @@ func (b *ByteBuffer) SetFloat64(val float64) {
 	b.UpdateLength()
 }
 
-func (b *ByteBuffer) GetFloat64BE() float64 {
+func (b *ByteBuffer) ReadFloat64BE() float64 {
 	defer b.Advance(8)
 	var c float64
 	buf := bytes.NewReader(b.Data())
@@ -269,7 +272,7 @@ func (b *ByteBuffer) GetFloat64BE() float64 {
 	return c
 }
 
-func (b *ByteBuffer) SetFloat64BE(val float64) {
+func (b *ByteBuffer) WriteFloat64BE(val float64) {
 	defer b.Advance(8)
 	var buffer bytes.Buffer
 	binary.Write(&buffer, binary.BigEndian, &val)
@@ -277,7 +280,13 @@ func (b *ByteBuffer) SetFloat64BE(val float64) {
 	b.UpdateLength()
 }
 
-func (b *ByteBuffer) GetBytes(size int) []byte {
+func (b *ByteBuffer) ReadBytes(size int) []byte {
 	defer b.Advance(size)
 	return b.Data()[:size]
+}
+
+func (b *ByteBuffer) WriteBytes(data []byte) {
+	defer b.Advance(len(data))
+	b.data = append(b.data, data...)
+	b.UpdateLength()
 }
